@@ -9,6 +9,35 @@ interface ProjectDetailsProps {
   onClose: () => void;
 }
 
+function generateProjectSchema(project: Project) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": project.name,
+    "description": project.description,
+    "applicationCategory": project.category.toLowerCase().includes("game") ? "GameApplication" : "WebApplication",
+    "operatingSystem": "Web, Mobile",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dominic Torres",
+      "url": "https://litebanana.github.io/"
+    },
+    "featureList": project.features.filter((f) => !f.startsWith("[")).join(", "),
+    "softwareVersion": "1.0",
+    "datePublished": "2026-01-01",
+    "url": project.links?.repo || `https://litebanana.github.io/#projects`,
+    "keywords": project.tech.join(", "),
+    "license": project.links?.repo ? "https://github.com/litebanana" : undefined
+  };
+  return schema;
+}
+
 export default function ProjectDetails({ project, open, onClose }: ProjectDetailsProps) {
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
@@ -74,6 +103,12 @@ export default function ProjectDetails({ project, open, onClose }: ProjectDetail
       aria-modal="true"
       aria-labelledby="project-detail-title"
     >
+      {open && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateProjectSchema(project)) }}
+        />
+      )}
       {/* Backdrop */}
       <button
         type="button"

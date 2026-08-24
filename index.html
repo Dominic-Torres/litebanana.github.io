@@ -18,8 +18,9 @@
     </script>
     <meta
       name="description"
-      content="Dominic Torres — Computer Science Student, Developer, QA Tester. Explore my projects, experience, and skills."
+      content="Dominic Torres — CS Student & Full-Stack Developer. Mobile (Flutter), Web (React/Node), AI/ML, QA Testing. 6 projects, internships, certifications. Open to opportunities."
     />
+    <link rel="preload" as="image" href="/og-image.png" />
 
     <!-- Open Graph / social sharing -->
     <meta property="og:type" content="website" />
@@ -87,6 +88,39 @@
           "React",
           "Node.js",
           "MongoDB"
+        ]
+}
+      </script>
+
+    <!-- Structured data: WebSite with search action -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Dominic Torres — Portfolio",
+        "url": "https://litebanana.github.io/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://litebanana.github.io/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Structured data: Project ItemList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Projects",
+        "description": "Software projects by Dominic Torres",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "FitTrack", "url": "https://litebanana.github.io/#projects"},
+          {"@type": "ListItem", "position": 2, "name": "DomFi", "url": "https://litebanana.github.io/#projects"},
+          {"@type": "ListItem", "position": 3, "name": "Backroom Game", "url": "https://litebanana.github.io/#projects"},
+          {"@type": "ListItem", "position": 4, "name": "Home Inventory", "url": "https://litebanana.github.io/#projects"},
+          {"@type": "ListItem", "position": 5, "name": "GUBAT", "url": "https://litebanana.github.io/#projects"},
+          {"@type": "ListItem", "position": 6, "name": "VOID//RUN", "url": "https://litebanana.github.io/#projects"}
         ]
       }
     </script>

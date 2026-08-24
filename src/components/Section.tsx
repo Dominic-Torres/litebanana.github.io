@@ -40,7 +40,7 @@ export default function Section({
             </span>
           </div>
           {title && (
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.6rem] sm:leading-[1.1] dark:text-white">
+            <h2 id={`${id}-heading`} className="font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.6rem] sm:leading-[1.1] dark:text-white">
               {title}
             </h2>
           )}
