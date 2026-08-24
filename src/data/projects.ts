@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     visual: "phone",
     accent: "#0EA5E9",
     tech: ["Flutter", "Dart"],
-    links: { repo: "https://github.com/dominic-torres/fittrack" },
+    links: { repo: "https://github.com/litebanana/fittrack" },
     overview:
       "FitTrack is a mobile fitness companion that helps users log workouts, monitor daily activity, and stay motivated with clear, achievable goals and streak tracking.",
     problem:
@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
     visual: "browser",
     accent: "#06B6D4",
     tech: ["Node.js", "React", "MongoDB"],
-    links: { repo: "https://github.com/dominic-torres/DomFi" },
+    links: { repo: "https://github.com/litebanana/DomFi" },
     overview:
       "Full-stack personal finance application that helps users manage budgets, track expenses, monitor savings goals, and analyze spending habits with AI-assisted insights.",
     problem:
@@ -98,7 +98,7 @@ export const PROJECTS: Project[] = [
     accent: "#64748B",
     tech: ["HTML", "CSS", "JavaScript"],
     links: {
-      repo: "https://github.com/dominic-torres/backroom-game",
+      repo: "https://github.com/litebanana/backroom-game",
       demo: "/games/backroom/",
     },
     overview:
@@ -126,7 +126,7 @@ export const PROJECTS: Project[] = [
     visual: "tablet",
     accent: "#22C55E",
     tech: ["Flutter", "Dart", "MongoDB"],
-    links: { repo: "https://github.com/dominic-torres/home-inventory" },
+    links: { repo: "https://github.com/litebanana/home-inventory" },
     overview:
       "Mobile inventory management system that enables users to track household assets, warranties, receipts, and documents in one searchable place.",
     problem:
@@ -179,7 +179,7 @@ export const PROJECTS: Project[] = [
     accent: "#7C3AED",
     tech: ["HTML", "CSS", "JavaScript"],
     links: {
-      repo: "https://github.com/dominic-torres/voidrun",
+      repo: "https://github.com/litebanana/voidrun",
       demo: "/games/voidrun/",
     },
     overview:

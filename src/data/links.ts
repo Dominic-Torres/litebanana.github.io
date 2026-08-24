@@ -8,7 +8,7 @@ export const LINKS = {
   // Real contact details
   email: "dominic.torres2704@gmail.com",
   linkedin: "https://www.linkedin.com/in/dominic-torres-24028940a/",
-  github: "https://github.com/dominic-torres",
+  github: "https://github.com/litebanana",
   location: "Based in the Philippines",
   phone: "0960 251 3475",
 
