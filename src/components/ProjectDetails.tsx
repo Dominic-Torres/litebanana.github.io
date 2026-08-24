@@ -26,14 +26,14 @@ function generateProjectSchema(project: Project) {
     "author": {
       "@type": "Person",
       "name": "Dominic Torres",
-      "url": "https://litebanana.github.io/"
+      "url": "https://dominic-torres.github.io/"
     },
     "featureList": project.features.filter((f) => !f.startsWith("[")).join(", "),
     "softwareVersion": "1.0",
     "datePublished": "2026-01-01",
-    "url": project.links?.repo || `https://litebanana.github.io/#projects`,
+    "url": project.links?.repo || `https://dominic-torres.github.io/#projects`,
     "keywords": project.tech.join(", "),
-    "license": project.links?.repo ? "https://github.com/litebanana" : undefined
+    "license": project.links?.repo ? "https://github.com/dominic-torres" : undefined
   };
   return schema;
 }

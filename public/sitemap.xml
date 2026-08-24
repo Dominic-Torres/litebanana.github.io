@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://litebanana.github.io/</loc>
+    <loc>https://dominic-torres.github.io/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://litebanana.github.io/#projects</loc>
+    <loc>https://dominic-torres.github.io/#projects</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://litebanana.github.io/#experience</loc>
+    <loc>https://dominic-torres.github.io/#experience</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://litebanana.github.io/#skills</loc>
+    <loc>https://dominic-torres.github.io/#skills</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://litebanana.github.io/#about</loc>
+    <loc>https://dominic-torres.github.io/#about</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://litebanana.github.io/#contact</loc>
+    <loc>https://dominic-torres.github.io/#contact</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
