@@ -5,6 +5,19 @@ import { DownloadIcon, ExternalIcon } from "./Icons";
 import { LINKS } from "../data/links";
 import { CERTIFICATIONS, EDUCATION, SOFT_SKILLS } from "../data/about";
 
+function trackResume(action: "view" | "download") {
+  try {
+    if (typeof window !== "undefined" && (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag) {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", `resume_${action}`, {
+        event_category: "resume",
+        event_label: action,
+      });
+    }
+  } catch {
+    /* analytics not loaded */
+  }
+}
+
 export default function About() {
   return (
     <Section id="about" index={4} eyebrow="About Me" title="About Me" className="bg-white dark:bg-[#0E1726]">
@@ -57,11 +70,18 @@ export default function About() {
                   rel="noopener noreferrer"
                   className="btn-primary"
                   aria-label="View resume"
+                  onClick={() => trackResume("view")}
                 >
                   <ExternalIcon className="h-4 w-4" />
                   VIEW RESUME
                 </a>
-                <a href={LINKS.resumeDownload} download className="btn-outline" aria-label="Download resume">
+                <a
+                  href={LINKS.resumeDownload}
+                  download
+                  className="btn-outline"
+                  aria-label="Download resume"
+                  onClick={() => trackResume("download")}
+                >
                   <DownloadIcon className="h-4 w-4" />
                   DOWNLOAD RESUME
                 </a>

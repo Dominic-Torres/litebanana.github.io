@@ -1,16 +1,39 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PROJECTS } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectDetails from "./ProjectDetails";
-import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
+import { ArrowLeftIcon, ArrowRightIcon, SearchIcon } from "./Icons";
+
+const CATEGORIES = ["All", ...Array.from(new Set(PROJECTS.map((p) => p.category)))];
 
 export default function ProjectCarousel() {
   const [index, setIndex] = useState(0);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [inView, setInView] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const touchStart = useRef<number | null>(null);
   const regionRef = useRef<HTMLDivElement | null>(null);
-  const count = PROJECTS.length;
+
+  const filteredProjects = useMemo(() => {
+    return PROJECTS.filter((p) => {
+      const matchesCategory = activeCategory === "All" || p.category === activeCategory;
+      const query = searchQuery.toLowerCase();
+      const matchesSearch =
+        !query ||
+        p.name.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.tech.some((t) => t.toLowerCase().includes(query)) ||
+        p.category.toLowerCase().includes(query);
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
+  const count = filteredProjects.length;
+
+  useEffect(() => {
+    setIndex(0);
+  }, [activeCategory, searchQuery]);
 
   const goTo = useCallback(
     (next: number) => setIndex(((next % count) + count) % count),
@@ -71,7 +94,38 @@ export default function ProjectCarousel() {
 
   return (
     <div className="relative">
-      {/* Carousel */}
+      {/* Category filter + search */}
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all ${
+                activeCategory === cat
+                  ? "bg-accent text-white shadow-pop"
+                  : "border-2 border-ink/10 bg-white text-ink-soft hover:border-accent hover:text-accent-deep dark:border-white/15 dark:bg-white/5 dark:text-slate-300 dark:hover:border-accent dark:hover:text-accent-bright"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <div className="relative w-full sm:w-64">
+          <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-faint dark:text-slate-400" />
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search projects..."
+            aria-label="Search projects"
+            className="w-full rounded-xl border-2 border-ink/10 bg-white py-2 pl-9 pr-4 text-sm font-semibold text-ink placeholder:text-ink-faint focus:border-accent focus:outline-none dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-400"
+          />
+        </div>
+      </div>
       <div
         ref={regionRef}
         className="relative min-w-0"
@@ -81,22 +135,32 @@ export default function ProjectCarousel() {
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        <div className="overflow-hidden rounded-3xl">
-          <div
-            className="carousel-track flex"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {PROJECTS.map((project, i) => (
-              <div key={project.id} className="w-full shrink-0 px-1 py-1 sm:px-2">
-                <ProjectCard
-                  project={project}
-                  active={i === index}
-                  onOpen={openDetails}
-                />
-              </div>
-            ))}
+        {count === 0 ? (
+          <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-ink/15 bg-white/50 px-6 py-16 text-center dark:border-white/15 dark:bg-white/5">
+            <SearchIcon className="h-8 w-8 text-ink-faint dark:text-slate-500" />
+            <p className="mt-3 font-display text-lg font-bold text-ink dark:text-white">No projects found</p>
+            <p className="mt-1 text-sm font-semibold text-ink-faint dark:text-slate-400">
+              Try a different search or category.
+            </p>
           </div>
-        </div>
+        ) : (
+          <div className="overflow-hidden rounded-3xl">
+            <div
+              className="carousel-track flex"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
+              {filteredProjects.map((project, i) => (
+                <div key={project.id} className="w-full shrink-0 px-1 py-1 sm:px-2">
+                  <ProjectCard
+                    project={project}
+                    active={i === index}
+                    onOpen={openDetails}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Arrow buttons */}
         <button
@@ -118,30 +182,32 @@ export default function ProjectCarousel() {
       </div>
 
       {/* Dots */}
-      <div className="mt-6 flex items-center justify-center gap-2.5" role="tablist" aria-label="Choose project">
-        {PROJECTS.map((project, i) => (
-          <button
-            key={project.id}
-            type="button"
-            role="tab"
-            aria-selected={i === index}
-            aria-label={`Show ${project.name}`}
-            onClick={() => goTo(i)}
-            className={`h-3 rounded-full transition-all duration-300 ${
-              i === index
-                ? "w-9 bg-accent shadow-pop"
-                : "w-3 bg-ink/15 hover:bg-ink/30 dark:bg-white/20 dark:hover:bg-white/40"
-            }`}
-          />
-        ))}
-      </div>
+      {count > 0 && (
+        <div className="mt-6 flex items-center justify-center gap-2.5" role="tablist" aria-label="Choose project">
+          {filteredProjects.map((project, i) => (
+            <button
+              key={project.id}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Show ${project.name}`}
+              onClick={() => goTo(i)}
+              className={`h-3 rounded-full transition-all duration-300 ${
+                i === index
+                  ? "w-9 bg-accent shadow-pop"
+                  : "w-3 bg-ink/15 hover:bg-ink/30 dark:bg-white/20 dark:hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       <p className="mt-3 text-center text-xs font-semibold text-ink-faint">
-        Use ← → keys or swipe to browse
+        Use ← → keys or swipe to browse {count} {count === 1 ? "project" : "projects"}
       </p>
 
       <ProjectDetails
-        project={PROJECTS[index]}
+        project={filteredProjects[index]}
         open={detailsOpen}
         onClose={closeDetails}
       />

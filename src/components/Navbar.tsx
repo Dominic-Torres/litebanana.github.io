@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "About", href: "#about" },
+  { label: "Blog", href: "#blog" },
 ];
 
 export default function Navbar() {

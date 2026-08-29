@@ -8,6 +8,7 @@ import { LINKS } from "../data/links";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -34,6 +35,28 @@ export default function Contact() {
     setCopied(true);
     if (timerRef.current) window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => setCopied(false), 2000);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setFormStatus("sending");
+    const form = e.currentTarget as HTMLFormElement;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("https://formspree.io/f/xpwdqjkl", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setFormStatus("sent");
+        form.reset();
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
   }
 
   return (
@@ -89,6 +112,63 @@ export default function Contact() {
                 LINKEDIN
               </a>
             </div>
+
+            {/* Contact form */}
+            <form
+              onSubmit={handleSubmit}
+              className="mx-auto mt-10 max-w-lg rounded-2xl border border-ink/10 bg-white/80 p-6 text-left shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5"
+            >
+              <h3 className="font-display text-lg font-bold text-ink dark:text-white">
+                Send a message
+              </h3>
+              <p className="mt-1 text-sm font-semibold text-ink-faint dark:text-slate-400">
+                Fill out the form below and I'll get back to you soon.
+              </p>
+              <div className="mt-4 flex flex-col gap-3">
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                  className="w-full rounded-xl border-2 border-ink/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink placeholder:text-ink-faint focus:border-accent focus:outline-none dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-400"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Your email"
+                  className="w-full rounded-xl border-2 border-ink/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink placeholder:text-ink-faint focus:border-accent focus:outline-none dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-400"
+                />
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="Your message"
+                  className="w-full resize-none rounded-xl border-2 border-ink/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink placeholder:text-ink-faint focus:border-accent focus:outline-none dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-slate-400"
+                />
+                <button
+                  type="submit"
+                  disabled={formStatus === "sending"}
+                  className="btn-primary disabled:opacity-60"
+                >
+                  {formStatus === "sending"
+                    ? "SENDING..."
+                    : formStatus === "sent"
+                    ? "MESSAGE SENT!"
+                    : "SEND MESSAGE"}
+                </button>
+                {formStatus === "sent" && (
+                  <p className="text-center text-sm font-bold text-emerald-500">
+                    Thanks! I'll get back to you soon.
+                  </p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-center text-sm font-bold text-red-500">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+              </div>
+            </form>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs font-semibold text-ink-faint dark:text-slate-500">
               <span>{LINKS.location}</span>

@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F6FAFD" />
+    <meta name="theme-color" content="#F6FAFD" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://litebanana.github.io/" />
     <meta name="author" content="Dominic Torres" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="alternate" hreflang="en" href="https://litebanana.github.io/" />
     <script>
       // Apply the saved/system theme before first paint to avoid a flash.
       (function () {
@@ -18,14 +22,18 @@
     </script>
     <meta
       name="description"
-      content="Dominic Torres — CS Student & Full-Stack Developer. Mobile (Flutter), Web (React/Node), AI/ML, QA Testing. 6 projects, internships, certifications. Open to opportunities."
+      content="Dominic Torres — Computer Science Student, Full-Stack Developer & QA Tester. Specializing in Flutter, React, Node.js, AI/ML, and MongoDB. 6+ projects including fitness apps, games, and machine learning. Open to internships and opportunities."
+    />
+    <meta
+      name="keywords"
+      content="Dominic Torres, portfolio, developer, software engineer, full-stack developer, QA tester, computer science student, Flutter, React, Node.js, Python, AI, machine learning, web development, mobile app, Philippines"
     />
     <link rel="preload" as="image" href="/og-image.png" />
 
     <!-- Open Graph / social sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Dominic Torres — Portfolio" />
-    <meta property="og:title" content="Dominic Torres — Computer Science Student, Developer, QA Tester" />
+    <meta property="og:title" content="Dominic Torres — CS Student, Developer & QA Tester" />
     <meta
       property="og:description"
       content="Computer Science student focused on software & web development, QA testing, and AI/ML. Explore my projects, experience, and skills."
@@ -35,28 +43,43 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Dominic Torres — Portfolio Preview" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:updated_time" content="2026-08-29T00:00:00Z" />
 
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dominic Torres — Computer Science Student, Developer, QA Tester" />
+    <meta name="twitter:site" content="@litebanana" />
+    <meta name="twitter:creator" content="@litebanana" />
+    <meta name="twitter:title" content="Dominic Torres — CS Student, Developer & QA Tester" />
     <meta
       name="twitter:description"
       content="Computer Science student focused on software & web development, QA testing, and AI/ML. Explore my projects, experience, and skills."
     />
     <meta name="twitter:image" content="https://litebanana.github.io/og-image.png" />
+    <meta name="twitter:image:alt" content="Dominic Torres — Portfolio Preview" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="./favicon.svg"
     />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>Dominic Torres — Computer Science Student</title>
+    <title>Dominic Torres — CS Student, Full-Stack Developer & QA Tester | Portfolio</title>
+
+    <!-- Google Analytics (replace G-XXXXXXXXXX with your measurement ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
 
     <!-- Structured data: who this site is about -->
     <script type="application/ld+json">
@@ -64,19 +87,27 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Dominic Torres",
+        "givenName": "Dominic",
+        "familyName": "Torres",
         "url": "https://litebanana.github.io/",
         "image": "https://litebanana.github.io/og-image.png",
         "jobTitle": "Computer Science Student",
         "email": "mailto:dominic.torres2704@gmail.com",
         "telephone": "+63 960 251 3475",
-        "address": { "@type": "PostalAddress", "addressCountry": "PH" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PH",
+          "addressRegion": "Philippines"
+        },
         "alumniOf": {
           "@type": "CollegeOrUniversity",
-          "name": "Lyceum of the Philippines University - Cavite"
+          "name": "Lyceum of the Philippines University - Cavite",
+          "url": "https://lpucavite.edu.ph/"
         },
         "sameAs": [
           "https://github.com/litebanana",
-          "https://www.linkedin.com/in/dominic-torres-24028940a/"
+          "https://www.linkedin.com/in/dominic-torres-24028940a/",
+          "https://www.instagram.com/litebanana"
         ],
         "knowsAbout": [
           "Software Development",
@@ -87,7 +118,9 @@
           "Flutter",
           "React",
           "Node.js",
-          "MongoDB"
+          "MongoDB",
+          "TypeScript",
+          "JavaScript"
         ]
       }
     </script>
@@ -98,12 +131,31 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Dominic Torres — Portfolio",
+        "alternateName": ["Dominic Torres Portfolio", "Dominic Torres Developer"],
         "url": "https://litebanana.github.io/",
+        "author": { "@type": "Person", "name": "Dominic Torres" },
+        "description": "Portfolio of Dominic Torres — CS Student, Full-Stack Developer & QA Tester",
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://litebanana.github.io/?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
+      }
+    </script>
+
+    <!-- Structured data: BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://litebanana.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://litebanana.github.io/#projects" },
+          { "@type": "ListItem", "position": 3, "name": "Experience", "item": "https://litebanana.github.io/#experience" },
+          { "@type": "ListItem", "position": 4, "name": "Skills", "item": "https://litebanana.github.io/#skills" },
+          { "@type": "ListItem", "position": 5, "name": "About", "item": "https://litebanana.github.io/#about" },
+          { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://litebanana.github.io/#contact" }
+        ]
       }
     </script>
 
@@ -114,13 +166,14 @@
         "@type": "ItemList",
         "name": "Projects",
         "description": "Software projects by Dominic Torres",
+        "numberOfItems": 6,
         "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "FitTrack", "url": "https://litebanana.github.io/#projects"},
-          {"@type": "ListItem", "position": 2, "name": "DomFi", "url": "https://litebanana.github.io/#projects"},
-          {"@type": "ListItem", "position": 3, "name": "Backroom Game", "url": "https://litebanana.github.io/#projects"},
-          {"@type": "ListItem", "position": 4, "name": "Home Inventory", "url": "https://litebanana.github.io/#projects"},
-          {"@type": "ListItem", "position": 5, "name": "GUBAT", "url": "https://litebanana.github.io/#projects"},
-          {"@type": "ListItem", "position": 6, "name": "VOID//RUN", "url": "https://litebanana.github.io/#projects"}
+          { "@type": "ListItem", "position": 1, "name": "FitTrack", "url": "https://litebanana.github.io/#projects", "description": "Fitness & Tracking App built with Flutter" },
+          { "@type": "ListItem", "position": 2, "name": "DomFi", "url": "https://litebanana.github.io/#projects", "description": "AI-Powered Personal Finance Management System" },
+          { "@type": "ListItem", "position": 3, "name": "Backroom Game", "url": "https://litebanana.github.io/#projects", "description": "Short Horror Exploration Game" },
+          { "@type": "ListItem", "position": 4, "name": "Home Inventory", "url": "https://litebanana.github.io/#projects", "description": "Smart Home Asset & Warranty Manager" },
+          { "@type": "ListItem", "position": 5, "name": "GUBAT", "url": "https://litebanana.github.io/#projects", "description": "Random Forest SMS Spam Filter" },
+          { "@type": "ListItem", "position": 6, "name": "VOID//RUN", "url": "https://litebanana.github.io/#projects", "description": "2D Pixel-Art Dungeon Roguelite" }
         ]
       }
     </script>

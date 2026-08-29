@@ -2,6 +2,8 @@ import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
 import { LINKS, SITE } from "../data/links";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="relative border-t border-ink/10 bg-white dark:border-white/10 dark:bg-[#0E1726]">
       <div className="container-site flex flex-col items-center gap-6 py-10 text-center">
@@ -46,7 +48,7 @@ export default function Footer() {
         </nav>
 
         <p className="text-xs font-semibold text-ink-faint dark:text-slate-500">
-          © 2026 Dominic Torres · Built with React, TypeScript &amp; Tailwind CSS
+          © {currentYear} Dominic Torres · Built with React, TypeScript &amp; Tailwind CSS
         </p>
       </div>
     </footer>

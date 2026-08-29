@@ -231,7 +231,7 @@ function Star({ x, y }: { x: number; y: number }) {
 /* Mascot — wraps the character with the click easter egg + speech bubble      */
 /* -------------------------------------------------------------------------- */
 
-const BUBBLES = ["Hey! I'm Dominic 👋", "Thanks for checking out my portfolio!"];
+const BUBBLES = ["Hey! I'm Dominic 👋", "Thanks for checking out my portfolio!", "You found the easter egg!", "5 clicks?! You're persistent 🎉", "You're hiring me, right? 😄", "Thanks for being awesome!"];
 
 export function Mascot({
   pose = "standing",
@@ -242,18 +242,23 @@ export function Mascot({
 }: CharacterProps & { ariaLabel?: string }) {
   const [clickCount, setClickCount] = useState(0);
   const [bubble, setBubble] = useState<string | null>(null);
+  const [shake, setShake] = useState(false);
   const timer = useTimeout();
 
   function handleClick() {
     const next = clickCount + 1;
     setClickCount(next);
     setBubble(BUBBLES[(next - 1) % BUBBLES.length]);
+    if (next === 5) {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+    }
     timer.clear();
     timer.set(() => setBubble(null), 3600);
   }
 
   return (
-    <div className={`relative inline-block ${className}`}>
+    <div className={`relative inline-block ${className} ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>
       <button
         type="button"
         onClick={handleClick}

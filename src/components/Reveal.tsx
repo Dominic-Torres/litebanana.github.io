@@ -57,7 +57,7 @@ export default function Reveal({
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : "translateY(24px)",
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        transition: `opacity var(--reveal-duration, 0.6s) ease ${delay}ms, transform var(--reveal-duration, 0.6s) cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
       }}
     >
       {children}
